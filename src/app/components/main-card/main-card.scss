@@ -1,0 +1,26 @@
+:host {
+    border-radius: 1rem;
+    overflow: hidden;
+    flex: 0 0 300px;
+    border: 3px solid;
+    border-color: var(--main-border);
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+:host:hover {
+    transform: translateY(-5px);
+    -webkit-box-shadow: -1px 14px 18px -12px rgba(0, 0, 0, 0.76);
+    box-shadow: -1px 14px 18px -12px rgba(0, 0, 0, 0.76);
+}
+
+.viewport {
+    overflow: hidden;
+    position: relative;
+}
+
+img {
+    position: absolute;
+    user-select: none;
+    pointer-events: none;
+}

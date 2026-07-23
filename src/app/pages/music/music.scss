@@ -1,0 +1,49 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    background-color: color-mix(in srgb, var(--main-background) 70%, transparent);
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.groups-list {
+    display: flex;
+    flex-direction: column;
+    padding-left: 2rem;
+    gap: 1rem;
+    width: fit-content;
+}
+
+.music-list {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    border-radius: 1rem;
+    transition: transform 0.2s ease;
+    background-color: white;
+    border: 3px solid;
+    border-color: var(--main-border);
+    padding: .5rem;
+    height: fit-content;
+
+    span {
+        cursor: pointer;
+        padding: .5rem;
+        border-radius: .5rem;
+        white-space: nowrap;
+    }
+
+    span:hover,
+    span.selected {
+        background-color: color-mix(in srgb, black 15%, transparent);
+    }
+}

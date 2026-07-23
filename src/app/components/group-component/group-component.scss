@@ -1,0 +1,22 @@
+:host {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    background-color: white;
+    border: 3px solid;
+    border-color: var(--main-border);
+    padding-inline: 5rem;
+    padding-block: 1rem;
+    width: 100%;
+    border-radius: 1rem;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+:host:hover,
+:host(.hovered) {
+    transform: translateY(-5px);
+    -webkit-box-shadow: -1px 14px 18px -12px rgba(0, 0, 0, 0.76);
+    box-shadow: -1px 14px 18px -12px rgba(0, 0, 0, 0.76);
+}

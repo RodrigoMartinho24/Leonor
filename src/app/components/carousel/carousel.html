@@ -1,0 +1,13 @@
+<button class="prev" (click)="previous()">
+  <svg lucideChevronLeft size="20"></svg>
+</button>
+
+<div #viewport class="viewport">
+  <div class="track" [style.transform]="'translateX(-' + currentOffset() + 'px)'">
+    <ng-content></ng-content>
+  </div>
+</div>
+
+<button class="next" (click)="next()">
+  <svg lucideChevronRight size="20"></svg>
+</button>

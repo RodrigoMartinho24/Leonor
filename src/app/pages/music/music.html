@@ -1,0 +1,46 @@
+<button (click)="location.back()" class="back">
+  <svg lucideArrowLeft size="20"></svg>
+</button>
+
+<div class="header">
+  <img src="../../../assets/músicas.png" class="title" />
+</div>
+
+<div class="flex gap-6">
+  <div class="groups-list">
+    <div>
+      <input type="text" (input)="search.set($event.target.value)" placeholder="Pesquisa..." />
+    </div>
+    
+    @for (group of groups; track group.id) {
+      <app-group
+        [group]="group"
+        (onSelected)="selectGroup($event)"
+        [isSelected]="group.id === selectedGroup()?.id"
+      ></app-group>
+    }
+  </div>
+
+  @if (music() && music()!.length > 0) {
+    <div class="music-list">
+      @for (music of music(); track music.id) {
+        <span
+          (click)="selectedMusicId.set(music.id)"
+          [class.selected]="selectedMusic()?.id === music?.id"
+        >
+          {{ music.title }}
+        </span>
+      }
+    </div>
+  }
+
+  @if (selectedMusic()) {
+    <div class="flex flex-col ml-40">
+      <h2 class="mt-0">{{ musicTitle() }}</h2>
+
+      <span class="whitespace-pre-line leading-[1.8]">
+        {{ musicLyrics() }}
+      </span>
+    </div>
+  }
+</div>

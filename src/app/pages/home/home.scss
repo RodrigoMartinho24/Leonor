@@ -1,0 +1,46 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--main-background);
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    gap: 15rem;
+    padding: 5rem;
+}
+
+title {
+    font-family: "Fraunces", serif;
+}
+
+.page-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cards-container {
+    display: flex;
+    gap: 1rem;
+    overflow: auto;
+    width: fit-content;
+}
+
+img {
+    position: fixed;
+    top: 0;
+    width: 18rem;
+    z-index: 100;
+}
+
+.top-right-image {
+    right: 0;
+    
+}
+
+.top-left-image {
+    left: 0;
+    transform: rotate(270deg);
+}
