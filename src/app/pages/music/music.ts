@@ -1,13 +1,26 @@
 import { Location } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
-import { LucideArrowLeft } from '@lucide/angular';
+import { LucideArrowLeft, LucideEllipsisVertical, LucidePlus } from '@lucide/angular';
 import { Group } from '../../data/interfaces/group.interface';
 import { Music } from '../../data/interfaces/music.interface';
+import { MenuComponent } from '../../components/menu-component/menu-component';
+import { MenuTriggerDirective } from '../../directives/menu-trigger';
 import { GroupComponent } from '../../components/group-component/group-component';
+import { MenuGroupComponent } from './menu-group/menu-group.component';
+import { MenuCreateGroupComponent } from './menu-create-group/menu-create-group.component';
 
 @Component({
   selector: 'app-music',
-  imports: [LucideArrowLeft, GroupComponent],
+  imports: [
+    LucideArrowLeft,
+    GroupComponent,
+    LucideEllipsisVertical,
+    MenuComponent,
+    MenuTriggerDirective,
+    LucidePlus,
+    MenuGroupComponent,
+    MenuCreateGroupComponent
+  ],
   templateUrl: './music.html',
   styleUrl: './music.scss',
 })
@@ -77,7 +90,9 @@ export class MusicComponent {
     const search = this.search()?.toLowerCase();
 
     if (!this.selectedGroup() && search) {
-      return this.groups.flatMap(g => g.content.filter((m) => m.title.toLowerCase().includes(search)))
+      return this.groups.flatMap((g) =>
+        g.content.filter((m) => m.title.toLowerCase().includes(search)),
+      );
     }
 
     if (!this.selectedGroup()) {
@@ -89,14 +104,10 @@ export class MusicComponent {
   protected musicTitle = computed(() => this.selectedMusic()?.title);
   protected musicLyrics = computed(() => this.selectedMusic()?.lyrics);
   protected selectedMusic = computed(() =>
-    this.groups.flatMap(g => g.content)?.find((m) => m.id === this.selectedMusicId()),
+    this.groups.flatMap((g) => g.content)?.find((m) => m.id === this.selectedMusicId()),
   );
 
-  protected selectGroup(group: Group<any> | undefined): void {
-    if (!group) {
-      // this.selectedMusicId.set(undefined);
-    }
-
-    this.selectedGroup.set(group);
+  protected selectMusic(musicId: string): void {
+    this.selectedMusicId.update((current) => (current === musicId ? undefined : musicId));
   }
 }

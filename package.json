@@ -1,12 +1,29 @@
 {
   "name": "leonor",
   "version": "0.0.0",
+  "main": "dist-electron/main.js",
+  "build": {
+    "appId": "leonor",
+    "productName": "Leonor",
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": "portable"
+    }
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "electron:build": "tsc -p tsconfig.electron.json",
+    "electron": "electron .",
+    "dev": "concurrently \"ng serve\" \"wait-on http://localhost:4200 && npm run electron:build && electron .\"",
+    "build:angular": "ng build --base-href ./",
+    "build:electron": "tsc -p tsconfig.electron.json",
+    "dist": "npm run build:angular && npm run build:electron && electron-builder"
   },
   "private": true,
   "packageManager": "npm@11.14.1",
@@ -28,11 +45,18 @@
     "@angular/cli": "^21.2.9",
     "@angular/compiler-cli": "^21.2.0",
     "@tailwindcss/postcss": "^4.1.12",
+    "@types/electron": "^1.4.38",
+    "@types/node": "^26.1.1",
+    "concurrently": "^10.0.3",
+    "electron": "^43.2.0",
+    "electron-builder": "^26.15.3",
     "jsdom": "^28.0.0",
     "postcss": "^8.5.3",
     "prettier": "^3.8.1",
     "tailwindcss": "^4.1.12",
+    "ts-node": "^10.9.2",
     "typescript": "~5.9.2",
-    "vitest": "^4.0.8"
+    "vitest": "^4.0.8",
+    "wait-on": "^9.1.0"
   }
 }

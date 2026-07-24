@@ -1,0 +1,16 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+}
+
+button {
+    justify-content: start;
+    display: flex;
+    gap: .5rem;
+    box-shadow: none;
+    padding-inline: 1rem;
+    padding-block: .5rem;
+    font-weight: 600;
+    width: 100%;
+}

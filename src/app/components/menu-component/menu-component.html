@@ -1,0 +1,11 @@
+@if (isOpen()) {
+  <div
+    class="menu"
+    [class]="position()"
+    [style.left.px]="left()"
+    [style.top.px]="top()"
+    [style.--arrow-position]="arrowPosition() + 'px'"
+  >
+    <ng-content />
+  </div>
+}

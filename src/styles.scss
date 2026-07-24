@@ -1,8 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-@use "tailwindcss";
 :root {
     --main-background: #fdc6ba;
     --main-border: color-mix(in srgb, var(--main-background) 75%, black);
+    --create-button-bg: #d8f2d8;
+    --create-button-border: color-mix(in srgb, var(--create-button-bg) 60%, black);
+    --delete-button-bg: #f7c1c1;
+    --delete-button-border: color-mix(in srgb, var(--delete-button-bg) 60%, black);
 }
 
 body,
@@ -28,24 +31,53 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: .4rem;
-    border-radius: 50%;
+    padding-block: .4rem;
+    padding-inline: .6rem;
+    border-radius: .5rem;
     background: white;
     color: black;
     border: none;
     cursor: pointer;
-    z-index: 10;
-    box-shadow:
-        0 4px 14px rgb(0 0 0 / 0.28),
-        0 2px 6px rgb(0 0 0 / 0.18);
+    // box-shadow:
+    //     0 4px 14px rgb(0 0 0 / 0.28),
+    //     0 2px 6px rgb(0 0 0 / 0.18);
+    border: 2px solid;
+    border-color: var(--main-border);
     transition: background-color .2s ease, box-shadow .2s ease;
+}
+
+button:not([icon]) {
+    width: 100%;
+}
+
+button[icon] {
+    padding: .4rem;
+    border-radius: 50%;
+}
+
+button[create] {
+    background-color: var(--create-button-bg);
+    border-color: var(--create-button-border);
+}
+
+button[create]:hover {
+    background: color-mix(in srgb, var(--create-button-bg) 90%, black);;
+}
+
+button[delete] {
+    background-color: var(--delete-button-bg);
+    border-color: var(--delete-button-border);
+}
+
+button[delete]:hover {
+    background: color-mix(in srgb, var(--delete-button-bg) 90%, black);;
 }
 
 button:hover {
     background: rgb(200 200 200);
-    box-shadow:
-        0 5px 18px rgb(0 0 0 / 0.35),
-        0 2px 8px rgb(0 0 0 / 0.22);
+    // box-shadow:
+    //     0 5px 18px rgb(0 0 0 / 0.35),
+    //     0 2px 8px rgb(0 0 0 / 0.22);
 }
 
 button:active {
@@ -69,4 +101,8 @@ button.back {
     position: absolute;
     top: 2.3rem;
     left: 2rem;
+}
+
+h3 {
+    margin: 0px;
 }

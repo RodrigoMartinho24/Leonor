@@ -1,41 +1,51 @@
-<button (click)="location.back()" class="back">
+<button (click)="location.back()" class="back" icon>
   <svg lucideArrowLeft size="20"></svg>
 </button>
 
 <div class="header">
-  <img src="../../../assets/músicas.png" class="title" />
+  <img [src]="'assets/músicas.png'" class="title" />
 </div>
 
-<div class="flex gap-6">
-  <div class="groups-list">
-    <div>
+<div class="flex gap-6 items-start">
+  <div class="groups-list grid grid-cols-[max-content_1fr] grid-rows-[auto_auto] gap-4">
+    <div class="flex gap-3">
       <input type="text" (input)="search.set($event.target.value)" placeholder="Pesquisa..." />
-    </div>
-    
-    @for (group of groups; track group.id) {
-      <app-group
-        [group]="group"
-        (onSelected)="selectGroup($event)"
-        [isSelected]="group.id === selectedGroup()?.id"
-      ></app-group>
-    }
-  </div>
 
-  @if (music() && music()!.length > 0) {
-    <div class="music-list">
-      @for (music of music(); track music.id) {
-        <span
-          (click)="selectedMusicId.set(music.id)"
-          [class.selected]="selectedMusic()?.id === music?.id"
-        >
-          {{ music.title }}
-        </span>
+      <button [appMenuTriggerFor]="createGroupMenu" position="right" icon>
+        <svg lucidePlus size="20"></svg>
+      </button>
+    </div>
+
+    <div></div>
+
+    <div class="flex flex-col gap-4">
+      @for (group of groups; track group.id) {
+        <app-group
+          [group]="group"
+          (onSelected)="this.selectedGroup.set($event)"
+          [isSelected]="group.id === selectedGroup()?.id"
+        ></app-group>
       }
     </div>
-  }
+
+    <div>
+      @if (music() && music()!.length > 0) {
+        <div class="music-list">
+          @for (music of music(); track music.id) {
+            <span
+              (click)="selectMusic(music.id)"
+              [class.selected]="selectedMusic()?.id === music?.id"
+            >
+              {{ music.title }}
+            </span>
+          }
+        </div>
+      }
+    </div>
+  </div>
 
   @if (selectedMusic()) {
-    <div class="flex flex-col ml-40">
+    <div class="fixed left-1/2 -translate-x-1/2">
       <h2 class="mt-0">{{ musicTitle() }}</h2>
 
       <span class="whitespace-pre-line leading-[1.8]">
@@ -44,3 +54,14 @@
     </div>
   }
 </div>
+
+<!-- <button [appMenuTriggerFor]="groupsMenu" position="right">
+  <svg lucideEllipsisVertical size="20"></svg>
+</button>
+<app-menu #groupsMenu>
+  <app-groups-menu></app-groups-menu>
+</app-menu> -->
+
+<app-menu #createGroupMenu>
+  <app-menu-create-group></app-menu-create-group>
+</app-menu>

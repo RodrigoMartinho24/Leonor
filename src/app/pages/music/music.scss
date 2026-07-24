@@ -5,6 +5,7 @@
     background-color: color-mix(in srgb, var(--main-background) 70%, transparent);
     width: 100%;
     font-family: 'Montserrat', sans-serif;
+    padding-left: 2rem;
 }
 
 .header {
@@ -16,9 +17,6 @@
 }
 
 .groups-list {
-    display: flex;
-    flex-direction: column;
-    padding-left: 2rem;
     gap: 1rem;
     width: fit-content;
 }
