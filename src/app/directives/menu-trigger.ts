@@ -21,6 +21,5 @@ export class MenuTriggerDirective {
         this.element.nativeElement,
         this.position()
       );
-
   }
 }

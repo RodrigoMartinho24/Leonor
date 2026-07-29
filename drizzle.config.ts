@@ -1,0 +1,11 @@
+import { defineConfig } from "drizzle-kit";
+
+export default defineConfig({
+  dialect: "sqlite",
+  schema: "./electron/database/schema/**/*.ts",
+  out: "./electron/database/migrations",
+
+  dbCredentials: {
+    url: "./drizzle/dev.db"
+  }
+});

@@ -1,11 +1,14 @@
 @if (isOpen()) {
-  <div
-    class="menu"
-    [class]="position()"
-    [style.left.px]="left()"
-    [style.top.px]="top()"
-    [style.--arrow-position]="arrowPosition() + 'px'"
-  >
-    <ng-content />
+  <div class="overlay" (click)="close()">
+    <div
+      class="menu"
+      (click)="$event.stopPropagation()"
+      [class]="position()"
+      [style.left.px]="left()"
+      [style.top.px]="top()"
+      [style.--arrow-position]="arrowPosition() + 'px'"
+    >
+      <ng-content />
+    </div>
   </div>
 }

@@ -1,13 +1,13 @@
-<input type="text" placeholder="Título" />
+<input type="text" placeholder="Título" [value]="title()" (input)="title.set($event.target.value)" />
 
 <div class="flex gap-4">
-  <button create>
-    <svg lucideCheck size="20"></svg>
+  <button create [disabled]="!title()" (click)="create()">
+    <svg lucideCheck size="18"></svg>
     Criar
   </button>
 
-  <button (click)="close()" delete>
-    <svg lucideX size="20"></svg>
+  <button (click)="close()" danger>
+    <svg lucideX size="18"></svg>
     Cancelar
   </button>
 </div>

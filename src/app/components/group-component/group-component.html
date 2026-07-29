@@ -1,1 +1,13 @@
 <div class="w-fit">{{ group().title }}</div>
+
+<ng-content></ng-content>
+
+<div
+  [appMenuTriggerFor]="menu()"
+  position="right"
+  class="ml-auto flex items-center px-4"
+>
+  <svg lucideEllipsisVertical size="20"></svg>
+</div>
+
+

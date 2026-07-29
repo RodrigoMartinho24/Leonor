@@ -1,4 +1,4 @@
-import { Component, ElementRef, Optional } from '@angular/core';
+import { Component, computed, Optional, output, signal } from '@angular/core';
 import { LucideCheck, LucideX } from '@lucide/angular';
 import { MenuComponent } from '../../../components/menu-component/menu-component';
 
@@ -9,9 +9,18 @@ import { MenuComponent } from '../../../components/menu-component/menu-component
   styleUrl: './menu-create-group.component.scss',
 })
 export class MenuCreateGroupComponent {
+  protected title = signal<string>('');
+
+  public onCreate = output<string>();
   constructor(@Optional() private menu: MenuComponent) {}
 
-  protected close() {
+  protected create(): void {
+    this.onCreate.emit(this.title()!);
+    this.menu?.close();
+    this.title.set('');
+  }
+
+  protected close(): void {
     this.menu?.close();
   }
 }

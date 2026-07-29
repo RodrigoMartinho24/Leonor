@@ -3,7 +3,8 @@
   "compilerOptions": {
     "module": "CommonJS",
     "target": "ES2022",
-    "outDir": "dist-electron"
+    "outDir": "dist-electron",
+    "esModuleInterop": true,
   },
   "include": ["electron/**/*.ts"]
 }

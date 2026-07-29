@@ -9,7 +9,7 @@
   },
   "include": [
     "src/**/*.ts"
-  ],
+, "shared/interfaces/group.interface.ts", "shared/interfaces/music.interface.ts"  ],
   "exclude": [
     "src/**/*.spec.ts"
   ]

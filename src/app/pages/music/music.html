@@ -19,12 +19,14 @@
     <div></div>
 
     <div class="flex flex-col gap-4">
-      @for (group of groups; track group.id) {
+      @for (group of groups(); track group.id) {
         <app-group
           [group]="group"
           (onSelected)="this.selectedGroup.set($event)"
           [isSelected]="group.id === selectedGroup()?.id"
-        ></app-group>
+          [menu]="groupsMenu"
+        >
+        </app-group>
       }
     </div>
 
@@ -55,13 +57,10 @@
   }
 </div>
 
-<!-- <button [appMenuTriggerFor]="groupsMenu" position="right">
-  <svg lucideEllipsisVertical size="20"></svg>
-</button>
 <app-menu #groupsMenu>
-  <app-groups-menu></app-groups-menu>
-</app-menu> -->
+  <app-menu-group (onDelete)="deleteGroup()"></app-menu-group>
+</app-menu>
 
 <app-menu #createGroupMenu>
-  <app-menu-create-group></app-menu-create-group>
+  <app-menu-create-group (onCreate)="createGroup($event)"></app-menu-create-group>
 </app-menu>
