@@ -1,0 +1,17 @@
+.updates-icon {
+    padding: .3rem;
+    border-radius: 100%;
+    height: fit-content;
+    width: fit-content;
+    right: .5rem;
+    top: .8rem;
+    position: absolute;
+    cursor: pointer;
+    z-index: 101;
+    pointer-events: all;
+    display: flex;
+}
+
+.updates-icon:hover {
+    background-color: color-mix(in srgb, var(--main-background) 85%, black);
+}

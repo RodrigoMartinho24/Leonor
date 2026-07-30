@@ -1,6 +1,6 @@
 {
   "name": "leonor",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist-electron/electron/main.js",
   "build": {
     "appId": "leonor",
@@ -30,13 +30,14 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "clean:release": "rimraf release",
     "copy:migrations": "copyfiles -u 2 \"electron/database/migrations/**/*\" dist-electron/electron/database",
     "electron:build": "tsc -p tsconfig.electron.json && npm run copy:migrations",
     "electron": "electron .",
     "dev": "concurrently \"ng serve\" \"wait-on http://localhost:4200 && npm run electron:build && electron .\"",
     "build:angular": "ng build --configuration production --base-href ./",
     "build:electron": "tsc -p tsconfig.electron.json && npm run copy:migrations",
-    "dist": "npm run build:angular && npm run build:electron && electron-builder"
+    "dist": "npm run clean:release && npm run build:angular && npm run build:electron && electron-builder"
   },
   "private": true,
   "packageManager": "npm@11.14.1",

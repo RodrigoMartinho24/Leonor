@@ -1,1 +1,10 @@
 <router-outlet></router-outlet>
+
+<div class="updates-icon" [appMenuTriggerFor]="menu" position="left">
+    <svg lucideInfo></svg>
+</div>
+
+<app-menu #menu class="flex flex-col gap-4">
+    {{ updateService.status()?.status }}
+    {{ updateService.status()?.progress }}
+</app-menu>
