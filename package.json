@@ -1,15 +1,27 @@
 {
   "name": "leonor",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "dist-electron/electron/main.js",
   "build": {
     "appId": "leonor",
     "productName": "Leonor",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "RodrigoMartinho24",
+        "repo": "Leonor"
+      }
+    ],
     "directories": {
       "output": "release"
     },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*",
+      "package.json"
+    ],
     "win": {
-      "target": "portable"
+      "target": "nsis"
     }
   },
   "scripts": {
@@ -22,7 +34,7 @@
     "electron:build": "tsc -p tsconfig.electron.json && npm run copy:migrations",
     "electron": "electron .",
     "dev": "concurrently \"ng serve\" \"wait-on http://localhost:4200 && npm run electron:build && electron .\"",
-    "build:angular": "ng build --base-href ./",
+    "build:angular": "ng build --configuration production --base-href ./",
     "build:electron": "tsc -p tsconfig.electron.json && npm run copy:migrations",
     "dist": "npm run build:angular && npm run build:electron && electron-builder"
   },
@@ -40,6 +52,7 @@
     "better-sqlite3": "^13.0.1",
     "dotenv": "^17.4.2",
     "drizzle-orm": "^1.0.0-rc.4",
+    "electron-updater": "^6.8.9",
     "postcss": "^8.5.22",
     "rxjs": "~7.8.0",
     "tailwindcss": "^4.3.3",

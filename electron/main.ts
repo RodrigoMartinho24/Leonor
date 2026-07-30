@@ -2,7 +2,9 @@ import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
 import { registerGroupIpc } from './modules/groups/group.ipc';
 import { migrateDatabase } from './database/migrate';
+import { autoUpdater } from "electron-updater";
 
+console.time('startup');
 function createWindow() {
   const win = new BrowserWindow({
     webPreferences: {
@@ -17,14 +19,22 @@ function createWindow() {
     win.loadURL('http://localhost:4200');
     win.webContents.openDevTools();
   } else {
-    win.loadFile(path.join(__dirname, '../dist/Leonor/browser/index.html'));
+    const indexPath = path.join(__dirname, '..', '..', 'dist', 'Leonor', 'browser', 'index.html');
+
+    win.loadFile(indexPath);
   }
 }
 
-app.whenReady().then(() => {
-  migrateDatabase();
+autoUpdater.on("update-downloaded", () => {
+  autoUpdater.quitAndInstall();
+});
 
+app.whenReady().then(() => {
   registerGroupIpc();
 
   createWindow();
+  
+  autoUpdater.checkForUpdatesAndNotify();
+
+  migrateDatabase();
 });
