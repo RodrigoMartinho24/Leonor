@@ -1,10 +1,33 @@
 <router-outlet></router-outlet>
 
-<div class="updates-icon" [appMenuTriggerFor]="menu" position="left">
+@if (status()) {
+  <div class="updates-icon" [appMenuTriggerFor]="menu" position="left">
     <svg lucideInfo></svg>
-</div>
+  </div>
+}
 
-<app-menu #menu class="flex flex-col gap-4">
-    {{ updateService.status()?.status }}
-    {{ updateService.status()?.progress }}
+<app-menu #menu class="text-sm">
+  <span class="flex items-center gap-1">
+    {{ status() }}
+
+    @if (status() === updateStatusEnum.downloaded) {
+      <svg lucideCheck size="20" class="text-green-500 -mt-1"></svg>
+    }
+  </span>
+
+  @if (progress()) {
+    <app-progress-bar [progress]="progress()!"></app-progress-bar>
+  }
+
+  <div class="flex gap-4">
+    <button class="whitespace-nowrap items-center" create (click)="install()">
+      <svg lucideDownload size="18"></svg>
+      Instalar agora
+    </button>
+
+    <button class="whitespace-nowrap items-center" danger (click)="menu.close()">
+      <svg lucideX size="18"></svg>
+      Instalar mais tarde
+    </button>
+  </div>
 </app-menu>

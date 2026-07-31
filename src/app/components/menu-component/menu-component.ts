@@ -51,7 +51,7 @@ export class MenuComponent {
         break;
 
       case 'left':
-        this.left.set(rect.left - 20);
+        this.left.set(rect.left);
         this.top.set(rect.top);
         this.arrowPosition.set(rect.height / 2);
         break;

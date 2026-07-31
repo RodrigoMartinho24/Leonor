@@ -1,0 +1,7 @@
+<div class="flex">
+  @for (item of [].constructor(100); track $index) {
+    <div class="w-0.5 h-2" [ngClass]="{ 'bg-blue-400': isFilled($index) }"></div>
+  }
+</div>
+
+{{ progress() }}%
